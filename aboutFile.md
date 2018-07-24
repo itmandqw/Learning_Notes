@@ -74,7 +74,7 @@ canvas.height = height;                  //JS控制canvas宽高
 
 + canvas能绘制闭合图形，边框图形，文字等详情去看上面提供的链接。这里重点记录canvas绘制img
 
-+ ```javascript
+```javascript
   ctx.drawImage(img,x,y);    //x,y为img在canvas中的坐标
   ctx.drawImage(img,x,y,width,height)     //可用来缩放图片为自定义的宽高(width,height)
   drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)  //裁剪
@@ -84,7 +84,7 @@ canvas.height = height;                  //JS控制canvas宽高
    后4个则是定义裁剪的目标显示位置和大小。
   ```
 
-+ ​
+
 
   ​
 

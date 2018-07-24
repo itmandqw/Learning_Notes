@@ -56,7 +56,12 @@ else if (window.MessageEvent && !document.getBoxObjectFor && ua.indexOf('chrome'
 
 ### CommonJs
 
-CommonJS是服务器端模块的规范，Node.js采用了这个规范。
+ 服务器端的Node.js遵循CommonJS规范。核心思想是允许模块通过require 方法来同步加载所要依赖的其他模块，然后通过 exports或module.exports来导出需要暴露的接口。(如node.js)
+
+- 同步的模块方式不适合不适合在浏览器环境中，同步意味着阻塞加载，浏览器资源是异步加载的
+- 不能非阻塞的并行加载多个模块
+
+CommonJS是同步加载模块
 
 1.定义模块：一个单独的文件就是一个模块。每一个模块都是一个单独的作用域，也就是说，在该模块内部定义的变量，无法被其他模块读取，除非定义为global（全局）对象的属性
 2.模块输出： 模块只有一个出口，module.exports对象，我们需要把模块希望输出的内容放入该对象
@@ -81,3 +86,5 @@ AMD与CMD的区别
 1.对于依赖的模块，AMD 是**提前执行**，CMD 是**延迟执行**。
 2.CMD 推崇**依赖就近**，AMD 推崇**依赖前置**。
 3.AMD 的 API 默认是**一个当多个用**，CMD 的 API 严格区分，推崇**职责单一**。比如 AMD 里，require 分全局 require 和局部 require，都叫 require。CMD 里，没有全局 require，而是根据模块系统的完备性，提供 seajs.use 来实现模块系统的加载启动。CMD 里，每个 API 都**简单纯粹**
+
+简单来说。AMD所依赖的模块是刚开始就全部引入，如果在写的过程中发现需要新的模块，必须找到开始加载模块的地方加进去所需要的模块，而CMD是随时用到随时添加。
