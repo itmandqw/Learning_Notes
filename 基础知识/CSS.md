@@ -106,3 +106,79 @@ window.addEventListener("onorientationchange" in window ? "orientationchange" : 
 
 # CSS选择器
 
++ 属性选择器
+
+  ```	javascript
+  input[type="text"]{width:100px}
+  //为type为text文本框的input设置宽度
+  ```
+
++ 部分属性选择器（CSS2新增）
+
+  ```javascript
+  p[class~="name"]{color:red}
+  //匹配到类名存在name的元素颜色设置红色 eg： <p class = "name  text">
+  ```
+
++ 子串匹配属性（CSS3新增）
+
+  ```css
+  [abc^="def"]    //选择 abc 属性值以 "def" 开头的所有元素
+  [abc$="def"]    //选择 abc 属性值以 "def" 结尾的所有元素
+  [abc*="def"]    //选择 abc 属性值中包含子串 "def" 的所有元素
+  ```
+
++ 其中[abc*="def"]和[abc~="def"]的区别:
+
+  ```css
+  <p class="class1  class2"></p>
+  p[class~="class1"]  //选择成功
+  p[class~="class1 clas"]  //选择失败
+  p[class*="class1 clas"]  //选择成功 
+  //而且，无论哪种方式，css样式顺序必须严格对照p的类名里面的顺序，包括空格都要一致，比如p[class*="clas class1"]就选择不到，当然，多个空格少个空格也是选择不到
+  ~针对的是 “单一类名”的字符串，而*比较强大，针对的是所有类组合看成一个字符串
+  ```
+
+  ## 子元素选择器  >  nth-child(n),nth-of-type(n)区别
+
+  ```css
+  //      > 比较常见，用于选择当前标签的所有子元素,此处略过
+  <div class="container">
+      <p>~~~~~~~</p>          //(1)
+      <li>~~~~~~~~</li>       //(2)
+      <li>~~~~~~~~</li>       //(3)
+      <p>~~~~~~~~</p>         //(4)
+      <p>~~~~~~~~</p>			//(5)
+      <li>~~~~~~~~</li>		//(6)
+     <li>~~~~~~~~</li>		//(7)
+  </div>
+
+  nth-child(n): 位置优先，用于选择当前标签下的第n个元素，若选中位置没有该标签，则选择失败。(即如果第n个位置不是这个标签算选择失败)
+  li:nth-child(2){
+    color: red;                  //(2)文字渲染为红色
+  }
+  //中间加一个空格，代表没有指定标签
+  .container  :nth-child(2){color: red;}        //(2)被文字变为红色
+  //可以理解为选择container下的第二个子元素
+
+  nth-of-type(n)：标签优先，用于选择父元素下的第n个指定标签子元素(先看父元素下有这个标签没有，有的话看这个标签第n个)
+
+  li:nth-of-type(2){
+    color: red;                  //(3)文字渲染为红色
+  }  //代表在li的父元素下寻找第二个li 
+
+  //中间加一个空格，代表没有指定元素
+  .container  :nth-of-type(2){}  
+  //选择container父元素下每种标签的第二个子元素，即寻找所有标签的第二个
+  ```
+
+  ## 兄弟选择器： + 和 ~
+
+  ```css
+  li:nth-child(2) + li{}   //选择第二个元素之后的一个" 同级 "元素      //(3)
+
+  li:nth-child(2) ~ p{}   //选择第二个元素之后所有的" 同级 "元素     (4)(5)
+  ```
+
+  ​
+
