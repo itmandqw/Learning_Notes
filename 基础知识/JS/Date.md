@@ -80,6 +80,14 @@ console.log(time4);   //1537321261284
 //ES5给Date提供了一种获取时间戳的新特性：
 var time5 = Date.now();
 console.log(time5);      //1537321482177
+```
 
+细节注意：
+
+```javascript
+<input type = "date" id = "end" value = "2018-09-04" />
+//若用value去初始化input的值，格式必须为   "YYYY-MM-DD" 否则报错。yyyy-m-d也不行,必须补全
+显示在页面中格式为"YYYY/MM/DD"
+input type = "type" 中max 和 min也同理。mm-dd必须为两位数。不足两位加0不足。否则无效。
 ```
 
