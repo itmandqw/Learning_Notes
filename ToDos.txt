@@ -1,0 +1,11 @@
+rem适配
+补补万能的event事件
+分析jQ封装的Dom和原生Dom的区别与联系
+分析框架源码（jQ,Vue)
+jQ.animate配合css动画或渐变transform做一些简单的动画
+
+
+
+基于nodejs模块化开发
+微信小程序开发
+微信支付等wx.jsBridge

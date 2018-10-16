@@ -88,3 +88,16 @@ AMD与CMD的区别
 3.AMD 的 API 默认是**一个当多个用**，CMD 的 API 严格区分，推崇**职责单一**。比如 AMD 里，require 分全局 require 和局部 require，都叫 require。CMD 里，没有全局 require，而是根据模块系统的完备性，提供 seajs.use 来实现模块系统的加载启动。CMD 里，每个 API 都**简单纯粹**
 
 简单来说。AMD所依赖的模块是刚开始就全部引入，如果在写的过程中发现需要新的模块，必须找到开始加载模块的地方加进去所需要的模块，而CMD是随时用到随时添加。
+
+# 页面清除缓存方法
+
+```html
+<!--关闭所有缓存选项-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache" content="no-cache">
+```
+

@@ -130,3 +130,7 @@ console.log(arrRemoved3); //[7]
 ```
 
 **区别：**splice会改变原数组，而slice不会改变原数组。
+
+## push pop unshift shift区别
+
+<https://www.cnblogs.com/dyqblog/p/5434803.html>
