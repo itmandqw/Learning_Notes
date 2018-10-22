@@ -21,7 +21,28 @@ $("#keyword").bind("input propertychange",function(){
 });
 ```
 
+## 自定义指令监听ng-repeat渲染结束
 
+<https://www.cnblogs.com/wangmeijian/p/5141266.html>
+
+```javascript
+<div id="box">
+    <span ng-repeat="item in data" repeat-finish>{{item.str}}</span>
+</div>
+$scope.data = ["one","two","three"];
+app.directive("repeat-finished",function(){
+    return {
+  	    link: function(scope,element,attr){
+  			console.log(scope.$index);
+  			if(scope.$last == true){
+  				console.log("ng-repeat渲染完毕")
+  				//TODO
+			}
+		}
+	}
+})
+执行依次打印出0，1，2当$index == 2的时候,$last值为true,ng-repeat渲染完毕
+```
 
 
 
