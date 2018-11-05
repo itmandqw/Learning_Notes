@@ -58,6 +58,24 @@ function timeFormat(time){
 }
 ```
 
+## 时间戳转化为yyyy-mm-dd格式：
+
+```javascript
+//将时间戳转换为时间YY-mm-dd
+function timeTrans(time){
+	function add(m){
+		return m<=0? m="0"+m:m
+	}
+	var dt = new Date(time);
+
+	var year = dt.getFullYear();
+	var month = dt.getMonth() + 1;
+	var day = dt.getDate();
+	
+	return year + "-" + add(month) + "-"+ add(day);
+}
+```
+
 ## 日期格式转换成时间戳
 
 ```javascript

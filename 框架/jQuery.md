@@ -84,3 +84,18 @@ $(".catalog_modal").click(function(e){
 });
 ```
 
+## jQ事件绑定on
+
+```javascript
+$.on作用与delegte,live,bind类似， jQ 1.9已经正式废弃live
+正常情况下，我们都是这样绑定一个点击事件对吧，
+$("selector").click(function(){
+	//TODO
+})
+但如果这个selector是js动态生成的dom呢，上面的方法就无能为力了，导致绑定不上事件，解决方法如下：
+$("existSelector").on('click','selector',function(){
+  //TODO
+})
+//existSelector必须是页面中已经存在的CSS选择器。
+```
+
