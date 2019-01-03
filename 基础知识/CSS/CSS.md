@@ -182,3 +182,25 @@ window.addEventListener("onorientationchange" in window ? "orientationchange" : 
 
   ​
 
+  # 去掉默认滚动条样式
+
+  ```css
+  如果需去掉默认样式只需第一步宽高都为零即可
+  .gundong_wrap::-webkit-scrollbar {/*滚动条整体样式*/
+      width: 4px;     /*高宽分别对应横竖滚动条的尺寸*/
+      height: 4px;
+  }
+  .gundong_wrap::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+      border-radius: 5px;
+      -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+      background: rgba(0,0,0,0.2);
+  }
+  .gundong_wrap::-webkit-scrollbar-track {/*滚动条里面轨道*/
+      -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+      border-radius: 0;
+      background: rgba(0,0,0,0.1);
+  }
+  ```
+
+  ​
+
