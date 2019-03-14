@@ -108,4 +108,3 @@ console.log(time5);      //1537321482177
 显示在页面中格式为"YYYY/MM/DD"
 input type = "type" 中max 和 min也同理。mm-dd必须为两位数。不足两位加0不足。否则无效。
 ```
-

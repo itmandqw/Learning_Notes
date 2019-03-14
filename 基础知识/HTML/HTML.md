@@ -12,3 +12,8 @@
 <meta http-equiv="Cache" content="no-cache">
 ```
 
+```html
+<!--禁止自动识别电话和邮箱-->
+<meta name="format-detection" content="telephone=no,email=no"/>
+```
+
