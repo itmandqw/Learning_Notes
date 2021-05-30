@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 第一反应的解决方案
+        let str = "abcaaanmertaabsc"
+        let max = 0, s =''
+        let obj = {}
+        for(var i=0;i<str.length;i++){
+            if(!obj[str[i]]){
+                obj[str[i]] = 1
+            }else{
+                obj[str[i]] = obj[str[i]] + 1
+            }
+        }
+        console.log(obj)
+
+        for(var key in obj){
+            if(obj[key] > max){
+                max = obj[key]
+                s = key
+            }
+        }
+        console.log('出现次数最多的字符是'+ s + '一共出现了'+ max + '次')
+
+        // 另一种解决方式(没什么吊区别)
+        let arr = str.split('')
+        for(var i=0;i<arr.length; i++){
+            if(obj[arr[i]]){
+                obj[arr[i]] = obj[arr[i]] + 1
+            }else{
+                obj[arr[i]] = 1
+            }
+        }
+        for(var key in obj){
+            if(obj[key] > max){
+                max = obj[key]
+                s = key
+            }
+        }
+        console.log('obj', obj)
+        console.log('出现次数最多的字符是'+ s + '一共出现了'+ max + '次')
+
+
+    </script>
+</body>
+</html>

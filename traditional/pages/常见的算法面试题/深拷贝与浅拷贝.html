@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.21/lodash.js"></script>
+    <script>
+        let obj1 = {
+            a: 1,
+            b: 2,
+            c: undefined,
+            d: function(){
+                console.log('ddd')
+            },
+            e: {
+                name: 'xxx',
+                age: '30'
+            }
+        }
+        let obj2 = {}
+        // 第一种方法： 递归遍历源对象中的每一项，拷贝到目标对象中（真正的深拷贝）
+        function deepCopy(target, source){
+            if(!source || typeof source != 'object'){
+                return 
+            }
+            if(!target || typeof target != 'object'){
+                return
+            }
+            for(var key in source){
+                if(source.hasOwnProperty(key)){
+                    // 如果目标数据是一个对象，那么使用递归再走一遍
+                    if(source[key] && typeof source[key] == 'object'){
+                        target[key] = Array.isArray(source[key]) ? [] : {}
+                        deepCopy(target[key], source[key])
+                    }else{
+                        target[key] = source[key]
+                    }
+                }
+            }
+            return target
+        }
+        // var result = deepCopy(obj2, obj1)
+
+        // 第二种方法 这种方式能简单实现对象的深拷贝，但是
+        // 无法复制值为undefined或者function的属性
+        function jsonCopy(target, source){
+            if(!source || typeof source != 'object'){
+                return 
+            }
+            if(!target || typeof target != 'object'){
+                return
+            }
+            target = JSON.parse(JSON.stringify(source))
+            return target
+        }
+        // var result = jsonCopy(obj2, obj1)
+
+        // 第三种方法 Object.assign是一种浅拷贝，只能复制第一层数据，第二层数据如果为
+        // 对象类型则只复制其引用
+        function objAssignCopy(target, source){
+            target = Object.assign(target, source)
+            return target
+        }
+        // var result = objAssignCopy(obj2, obj1)
+
+        // 第四种方法 引入loadsh,使用cloneDeep方法拷贝目标对象,工具就不讲了
+        var result = _.cloneDeep(obj1)
+
+        console.log(result)
+        result.e.name = 'cc'
+        console.log(obj1.e.name)
+    </script>
+</body>
+</html>
