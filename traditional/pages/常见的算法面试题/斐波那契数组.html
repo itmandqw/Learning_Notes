@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 查找斐波那契数组/数列中的第n项的值    1,1,2,3,5,8,13,21,34,55,89....
+        // 1，使用递归
+        // function findFeibo(n){
+        //     if(n == 1 || n == 2){
+        //         return 1
+        //     }else{
+        //         return findFeibo(n-1) + findFeibo(n-2)
+        //     }
+        // }
+        
+        // 2，循环
+        function findFeibo(n){
+            var res1 = 1;
+            var res2 = 1;
+            var sum = res2;
+            for(var i = 2;i < n;i++){
+            sum = res1 + res2;
+            res1 = res2;
+            res2 = sum;
+            }
+            return sum;
+        }
+
+        let res = findFeibo(8)
+        console.log(res)
+    </script>
+</body>
+</html>
