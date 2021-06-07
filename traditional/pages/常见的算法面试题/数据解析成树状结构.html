@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据解析成树状结构</title>
+</head>
+<body>
+    <script>
+        var industry_list = [
+            {
+            "parent_ind" : "女装",
+            "name" : "连衣裙"
+            },
+            {
+            "name": "女装"
+            },
+            {
+            "parent_ind" : "女装",
+            "name" : "半身裙"
+            },
+            {
+            "parent_ind" : "女装",
+            "name" : "A字裙"
+            },
+            {
+            "name": "数码"
+            },
+            {
+            "parent_ind" : "数码",
+            "name": "电脑配件"
+            },
+            {
+            "parent_ind" : "电脑配件",
+            "name": "内存"
+            },
+        ]
+
+        // 为了取用方便，我们希望可以将其转换为树状格式，例如：
+        // {
+        //     "数码": {
+        //     "电脑配件": {
+        //     "内存" : {}
+        //     }
+        //     },
+        //     "女装" : {
+        //     "连衣裙": {},
+        //     "半身裙": {},
+        //     "A字裙": {}
+        //     }
+        // }
+
+        // 方法一:
+        function convert_format(data){
+            var obj = {}, res = {};
+            data.forEach(item => {
+                obj[item.name] = item.parent_ind ? item.parent_ind : {};
+            });
+
+            for (var name in obj) {
+                var parent = obj[name];
+                if (typeof (parent) === 'object') {
+                    res[name] = obj[name];
+                } else {
+                    obj[name] = {}
+                    obj[parent][name] = obj[name];
+                }
+            }
+            return res
+        }
+
+        // 方法二:
+        // function convert_format(data){
+        //     if (!Array.isArray(data)) {
+        //         return;
+        //     }
+        //     const flagObj = {};
+        //     const resData = {};
+        //     const parents = [], children = [];
+        //     let parent = null, child = null;
+        //     let parentKey = null, childKey = null;
+        //     for(let item of data) {
+        //         if (item.parent_ind) {
+        //             children.push(item);
+        //         } else {
+        //             parents.push(item);
+        //         }
+        //     }
+            
+        //     while(parents.length || children.length) {
+        //         if(parents.length) {
+        //             parent = parents.shift();
+        //             parentKey = parent.name;
+        //             resData[parentKey] = {};
+        //             flagObj[parentKey] = resData[parentKey];
+        //         } else {
+        //             child = children.shift();
+        //             childKey = child.name;
+        //             if(child.parent_ind in flagObj) {
+        //             flagObj[child.parent_ind][childKey] = {};
+        //                 flagObj[childKey] = flagObj[child.parent_ind][childKey];
+        //             } else {
+        //                 children.push(child)
+        //             }
+        //         }
+        //     }
+        //     return resData;
+        // }
+
+        let res = convert_format(industry_list)
+        console.log(res)
+    </script>
+</body>
+</html>
